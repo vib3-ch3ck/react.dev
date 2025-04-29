@@ -85,7 +85,7 @@ You could think of your components as recipes: if you follow them and don't intr
 
 <Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add x spoons of tea and 0.5x spoons of spices, and 0.5x cups of milk" />
 
-#### What does "same JSX" mean?  
+#### JSX Equality:  
 
 For two JSX values to be considered equal in React's purity model:  
 
@@ -102,10 +102,9 @@ For two JSX values to be considered equal in React's purity model:
 <Child config={{ color: 'red' }} />
 <Child config={{ color: 'red' }} />
 
-// These are NOT equal (different structure or type):
+// These are NOT equal (different structure):
+<Child config={{ color: 'red' }} />
 <Child config={{ color: 'blue' }} />
-<Child />
-<DifferentComponent />
 ```
 </Sandpack>
 
