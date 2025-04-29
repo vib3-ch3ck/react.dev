@@ -85,16 +85,16 @@ You could think of your components as recipes: if you follow them and don't intr
 
 <Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add x spoons of tea and 0.5x spoons of spices, and 0.5x cups of milk" />
 
-### JSX Equality and Purity
+#### What does "same JSX" mean?  
 
-React considers two JSX values to be "equal" for purity purposes if:
-1. **Their types are identical** (e.g., both `<Child />`).
-2. **Their props are deeply equal**:
-   - Primitive props (`string`, `number`, `boolean`) must be `===` equal.
-   - Object/array props must be *structurally equivalent* (same keys/values, regardless of reference).
-3. **Their `key` and `ref` props (if any) are equal**.
+For two JSX values to be considered equal in React's purity model:  
 
-#### Example
+- **Type equality**: They must be the same component or HTML tag (e.g., `<Button />` vs `<div>`).  
+- **Prop equality**:  
+  - Primitive props (`string`, `number`, `boolean`) must be identical (`===`).  
+  - Object/array props must have *equivalent structure* (same keys/values, even if references differ).  
+- **Special props**: `key` and `ref` (if present) must be identical.  
+
 <Sandpack>
 
 ```jsx
@@ -102,11 +102,11 @@ React considers two JSX values to be "equal" for purity purposes if:
 <Child config={{ color: 'red' }} />
 <Child config={{ color: 'red' }} />
 
-// These are NOT equal (different structure):
-<Child config={{ color: 'red' }} />
+// These are NOT equal (different structure or type):
 <Child config={{ color: 'blue' }} />
+<Child />
+<DifferentComponent />
 ```
-
 </Sandpack>
 
 ## Side Effects: (un)intended consequences {/*side-effects-unintended-consequences*/}
